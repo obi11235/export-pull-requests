@@ -163,7 +163,7 @@ def github(user, repo)
         item.state,
         localtime(item.created_at),
         localtime(item.updated_at),
-        localtime(item.merged_at),
+        localtime(item.merged_at || ""),
         item.html_url,
       ]
 
@@ -227,7 +227,7 @@ end
 
 def export_repos(argv)
   rows = []
-  rows << %w[Repository Type # User Title State Created Updated URL]
+  rows << %w[Repository Type # User Title State Created Updated Merged URL]
   rows[-1].insert(4, "Body") if $body
 
   repos = parse_repos(argv)
